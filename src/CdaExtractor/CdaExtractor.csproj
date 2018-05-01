@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2B52B341-7CF8-47A3-A36C-F0BABC70DB9E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nehta.VendorLibrary.CdaExtractor</RootNamespace>
+    <AssemblyName>Nehta.VendorLibrary.CdaExtractor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CdaDataExtractor.cs" />
+    <Compile Include="CdaXmlDocument.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\ConfigModel.cs" />
+    <Compile Include="Configuration\Document.cs" />
+    <Compile Include="Configuration\Field.cs" />
+    <Compile Include="Extractor\AdverseReactionsExtractor.cs" />
+    <Compile Include="Extractor\AdvanceCareInformationExtractor.cs" />
+    <Compile Include="Extractor\AuthorExtractor.cs" />
+    <Compile Include="Extractor\ConsumerNoteExtractor.cs" />
+    <Compile Include="Extractor\ImmunisationsExtractor.cs" />
+    <Compile Include="Extractor\DocumentMetadataExtractor.cs" />
+    <Compile Include="Extractor\ICdaExtractor.cs" />
+    <Compile Include="Extractor\MedicalHistoryExtractor.cs" />
+    <Compile Include="Extractor\PharmaceuticalBenefitItemExtractor.cs" />
+    <Compile Include="Extractor\SubjectOfCareExtractor.cs" />
+    <Compile Include="FileDocumentXPathProvider.cs" />
+    <Compile Include="Helper\DateTimeHelper.cs" />
+    <Compile Include="ICdaDataExtractor.cs" />
+    <Compile Include="IDocumentXPathProvider.cs" />
+    <Compile Include="Model\AdverseReaction.cs" />
+    <Compile Include="Model\CdaDocument.cs" />
+    <Compile Include="Model\CodableText.cs" />
+    <Compile Include="Model\AdvanceCareInformation.cs" />
+    <Compile Include="Model\ConsumerNote.cs" />
+    <Compile Include="Model\Telecom.cs" />
+    <Compile Include="Model\Immunisation.cs" />
+    <Compile Include="Model\DocumentMetadata.cs" />
+    <Compile Include="Model\Id.cs" />
+    <Compile Include="Model\Interval.cs" />
+    <Compile Include="Model\MedicalHistory.cs" />
+    <Compile Include="Model\MedicalHistoryType.cs" />
+    <Compile Include="Model\Medication.cs" />
+    <Compile Include="Extractor\MedicationsExtractor.cs" />
+    <Compile Include="Model\Author.cs" />
+    <Compile Include="Model\PersonName.cs" />
+    <Compile Include="Model\PharmaceuticalBenefitItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\SubjectOfCare.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
