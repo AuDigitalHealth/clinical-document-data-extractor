@@ -269,6 +269,14 @@
           <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:code</XPath>
         </Field>
         <Field>
+          <Name>GenericName</Name>
+          <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>Strength</Name>
+          <XPath>cda:substanceAdministration/cda:entryRelationship/cda:act[cda:code/@code='103.16769.171.1.1']/cda:text</XPath>
+        </Field>
+        <Field>
           <Name>ClinicalIndication</Name>
           <XPath>cda:substanceAdministration[@classCode='SBADM']/cda:entryRelationship/cda:act[cda:code/@code='103.10141']/cda:text</XPath>
         </Field>
@@ -422,6 +430,14 @@
           <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:code</XPath>
         </Field>
         <Field>
+          <Name>GenericName</Name>
+          <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>Strength</Name>
+          <XPath>cda:substanceAdministration/cda:entryRelationship/cda:act[cda:code/@code='103.16769.171.1.1']/cda:text</XPath>
+        </Field>
+        <Field>
           <Name>ClinicalIndication</Name>
           <XPath>cda:substanceAdministration[@classCode='SBADM']/cda:entryRelationship/cda:act[cda:code/@code='103.10141']/cda:text</XPath>
         </Field>
@@ -539,6 +555,10 @@
           <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:name</XPath>
         </Field>
         <Field>
+          <Name>Strength</Name>
+          <XPath>cda:substanceAdministration/cda:entryRelationship/cda:act[cda:code/@code='103.16769.171.1.1']/cda:text</XPath>
+        </Field>
+        <Field>
           <Name>ClinicalIndication</Name>
           <XPath>cda:substanceAdministration[@classCode='SBADM']/cda:entryRelationship/cda:act[cda:code/@code='103.10141']/cda:text</XPath>
         </Field>
@@ -646,7 +666,11 @@
         </Field>
         <Field>
           <Name>GenericName</Name>
-          <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:name</XPath>
+          <XPath>cda:substanceAdministration[@classCode='SBADM']/cda:entryRelationship/cda:supply[@classCode='SPLY']/cda:product/cda:manufacturedProduct/cda:manufacturedMaterial/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>Strength</Name>
+          <XPath>cda:substanceAdministration/cda:entryRelationship/cda:act[cda:code/@code='103.16769.171.1.1']/cda:text</XPath>
         </Field>
         <Field>
           <Name>Directions</Name>
@@ -764,6 +788,14 @@
         <Field>
           <Name>Medicine</Name>
           <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:code</XPath>
+        </Field>
+        <Field>
+          <Name>GenericName</Name>
+          <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>Strength</Name>
+          <XPath>cda:substanceAdministration/cda:entryRelationship/cda:act[cda:code/@code='103.16769.171.1.1']/cda:text</XPath>
         </Field>
         <Field>
           <Name>ClinicalIndication</Name>
@@ -949,6 +981,14 @@
         <Field>
           <Name>Medicine</Name>
           <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:code</XPath>
+        </Field>
+        <Field>
+          <Name>GenericName</Name>
+          <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>Strength</Name>
+          <XPath>cda:substanceAdministration/cda:entryRelationship/cda:act[cda:code/@code='103.16769.171.1.1']/cda:text</XPath>
         </Field>
         <Field>
           <Name>ClinicalIndication</Name>
@@ -1147,6 +1187,14 @@
           <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:code</XPath>
         </Field>
         <Field>
+          <Name>GenericName</Name>
+          <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>Strength</Name>
+          <XPath>cda:substanceAdministration/cda:entryRelationship/cda:act[cda:code/@code='103.16769.171.1.1']/cda:text</XPath>
+        </Field>
+        <Field>
           <Name>ClinicalIndication</Name>
           <XPath>cda:substanceAdministration[@classCode='SBADM']/cda:entryRelationship/cda:act[cda:code/@code='103.10141']/cda:text</XPath>
         </Field>
@@ -1324,6 +1372,14 @@
         <Field>
           <Name>Medicine</Name>
           <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:code</XPath>
+        </Field>
+        <Field>
+          <Name>GenericName</Name>
+          <XPath>cda:substanceAdministration/cda:consumable/cda:manufacturedProduct/cda:manufacturedMaterial/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>Strength</Name>
+          <XPath>cda:substanceAdministration/cda:entryRelationship/cda:act[cda:code/@code='103.16769.171.1.1']/cda:text</XPath>
         </Field>
         <Field>
           <Name>ClinicalIndication</Name>

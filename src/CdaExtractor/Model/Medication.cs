@@ -9,6 +9,7 @@
         public string Comment { get; set; }
         public CodableText Status { get; set; }
         public string GenericName { get; set; }
+        public string Strength { get; set; }
     }
   
 }

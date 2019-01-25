@@ -286,15 +286,19 @@ namespace Nehta.VendorLibrary.CdaExtractor
 
             var telecoms = new List<Telecom>();
 
-            for (int x = 0; x < telecomNodes.Count; x++)
+            if (telecomNodes != null)
             {
-                var node = telecomNodes[x];
-                
-                telecoms.Add(new Telecom()
+                for (int x = 0; x < telecomNodes.Count; x++)
                 {
-                    Use = node.Attributes["use"].Value,
-                    Value = node.Attributes["value"].Value
-                });
+                    var node = telecomNodes[x];
+                
+                    telecoms.Add(new Telecom()
+                    {
+                        Use = node.Attributes["use"].Value,
+                        Value = node.Attributes["value"].Value
+                    });
+                }
+                
             }
 
             return telecoms;

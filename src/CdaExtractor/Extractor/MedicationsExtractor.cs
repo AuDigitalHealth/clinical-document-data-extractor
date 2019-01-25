@@ -27,6 +27,8 @@ namespace Nehta.VendorLibrary.CdaExtractor.Extractor
 
                 medication.Medicine = cdaDocument.GetCodableText(medicineNode);
 
+                medication.GenericName = cdaDocument.SelectSingleNode(medicationNode, _documentXPaths.Get("GenericName"))?.InnerText;
+
                 var clinicalIndication = cdaDocument.SelectSingleNode(medicationNode, _documentXPaths.Get("ClinicalIndication"));
 
                 medication.ClinicalIndications = clinicalIndication == null ? null : clinicalIndication.InnerText;
@@ -34,6 +36,8 @@ namespace Nehta.VendorLibrary.CdaExtractor.Extractor
                 var directions = cdaDocument.SelectSingleNode(medicationNode, _documentXPaths.Get("Directions"));
 
                 medication.Directions = directions == null || string.IsNullOrWhiteSpace(directions.InnerText) ? null : directions.InnerText;
+
+                medication.Strength = cdaDocument.SelectSingleNode(medicationNode, _documentXPaths.Get("Strength"))?.InnerText;
 
                 if (directions != null)
                 {
