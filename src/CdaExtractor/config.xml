@@ -716,7 +716,6 @@
       </FieldMappings>
     </Document>
 
-
     <Document>
       <TemplateId>1.2.36.1.2001.1001.101.100.1002.132</TemplateId>
       <Name>Specialist Letter</Name>
@@ -1574,7 +1573,400 @@
 
       </FieldMappings>
     </Document>
-    
-    
+
+    <Document>
+      <TemplateId>1.2.36.1.2001.1001.100.1002.220</TemplateId>
+      <Name>Pathology Report</Name>
+      <FieldMappings>
+
+        <!-- DocumentMetadata -->
+        <Field>
+          <Name>DocumentCode</Name>
+          <XPath>/cda:ClinicalDocument/cda:code</XPath>
+        </Field>
+        <Field>
+          <Name>EffectiveTime</Name>
+          <XPath>/cda:ClinicalDocument/cda:effectiveTime/@value</XPath>
+        </Field>
+        <Field>
+          <Name>Title</Name>
+          <XPath>/cda:ClinicalDocument/cda:title</XPath>
+        </Field>
+        <Field>
+          <Name>DocumentId</Name>
+          <XPath>/cda:ClinicalDocument/cda:id</XPath>
+        </Field>
+
+        <!-- AuthorOrg -->
+        <Field>
+          <Name>AuthorPersonName</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>AuthorTelecoms</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:telecom</XPath>
+        </Field>
+        <Field>
+          <Name>AuthorIhi</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:assignedPerson/ext:asEntityIdentifier/ext:id[@assigningAuthorityName='IHI']/@root</XPath>
+        </Field>
+        <Field>
+          <Name>AuthorOrganisationName</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:assignedPerson/ext:asEmployment/ext:employerOrganization/cda:asOrganizationPartOf/cda:wholeOrganization/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>AuthorOrganisationHpio</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:assignedPerson/ext:asEmployment/ext:employerOrganization/cda:asOrganizationPartOf/cda:wholeOrganization/ext:asEntityIdentifier/ext:id/@root</XPath>
+        </Field>
+
+        <!-- SubjectOfCare -->
+        <Field>
+          <Name>SubjectOfCare</Name>
+          <XPath>/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient</XPath>
+        </Field>
+        <Field>
+          <Name>SubjectOfCareIhi</Name>
+          <XPath>ext:asEntityIdentifier/ext:id[@assigningAuthorityName='IHI']</XPath>
+        </Field>
+        <Field>
+          <Name>SubjectOfCareAdministrativeGenderCode</Name>
+          <XPath>cda:administrativeGenderCode</XPath>
+        </Field>
+        <Field>
+          <Name>SubjectOfCareBirthTime</Name>
+          <XPath>cda:birthTime/@value</XPath>
+        </Field>
+        <Field>
+          <Name>SubjectOfCarePersonName</Name>
+          <XPath>/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>DvaNumber</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='102.16080']/ext:coverage2/ext:entitlement[ext:participant/@typeCode = 'BEN']/ext:id[@assigningAuthorityName="Department of Veterans&apos; Affairs"]/@extension</XPath>
+        </Field>
+        <Field>
+          <Name>MedicareNumberEntitlements</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='102.16080']/ext:coverage2/ext:entitlement[ext:participant/@typeCode = 'BEN']/ext:id[@assigningAuthorityName='Medicare Card Number']/@extension</XPath>
+        </Field>
+        <Field>
+          <Name>MedicareNumberEntityIdentifier</Name>
+          <XPath>/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/ext:asEntityIdentifier/ext:id[@assigningAuthorityName='Individual Medicare Card Number']/@extension</XPath>
+        </Field>
+
+
+        <!-- Pathology - Pathology Test Result 1..* -->
+        <Field>
+          <Name>PathologyTestResults</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='101.20018']/cda:component</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyTestResultName</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:code</XPath>
+        </Field>
+        
+        <Field>
+          <Name>PathologyDiscipline</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:entryRelationship/cda:observation[cda:code/@code='310074003']/cda:value</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyCollectionDateTime</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:entryRelationship/cda:observation[cda:code/@code='102.16156']/cda:effectiveTime/@value</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyTestResultStatus</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:entryRelationship/cda:observation[cda:code/@code='308552006']/cda:value</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyObservationDateTime</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:entryRelationship/cda:observation[cda:code/@code='103.16605']/cda:effectiveTime/@value</XPath>
+        </Field>
+
+        <!-- Pathology - Related Document-->
+        <Field>
+          <Name>PathologyDocument</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='101.20018']/cda:entry</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyReportName</Name>
+          <XPath>cda:act/cda:entryRelationship/cda:act[cda:code/@code='103.16966']/cda:text</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyReportDateTime</Name>
+          <XPath>cda:act/cda:effectiveTime/cda:low/@value</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyReportStatus</Name>
+          <XPath>cda:act/cda:entryRelationship/cda:observation[cda:code/@code='103.20104']/cda:value</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyReportIdentifier</Name>
+          <XPath>cda:act/cda:reference/cda:externalDocument[cda:code/@code='11526-1']/cda:id</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyReportIntegrityCheck</Name>
+          <XPath>cda:act/cda:reference/cda:externalDocument[cda:code/@code='11526-1']/cda:text/@integrityCheck</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyReportMediaType</Name>
+          <XPath>cda:act/cda:reference/cda:externalDocument[cda:code/@code='11526-1']/cda:text/@mediaType</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologyReportDocName</Name>
+          <XPath>cda:act/cda:reference/cda:externalDocument[cda:code/@code='11526-1']/cda:text/cda:reference/@value</XPath>
+        </Field>
+
+        <!-- Pathology - Pathologist-->
+        <Field>
+          <Name>Pathologist</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='101.20018']/cda:author/cda:assignedAuthor</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologistName</Name>
+          <XPath>cda:assignedPerson/cda:name</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologistIdentifier</Name>
+          <XPath>cda:assignedPerson/ext:asEntityIdentifier/ext:id[@assigningAuthorityName="HPI-I"]/@root</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologistOrganisationName</Name>
+          <XPath>cda:assignedPerson/ext:asEmployment/ext:employerOrganization/cda:asOrganizationPartOf/cda:wholeOrganization/cda:name</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologistOrganisationIdentifier</Name>
+          <XPath>cda:assignedPerson/ext:asEmployment/ext:employerOrganization/cda:asOrganizationPartOf/cda:wholeOrganization/ext:asEntityIdentifier/ext:id[@assigningAuthorityName="HPI-O"]/@root</XPath>
+        </Field>
+
+        <Field>
+          <Name>PathologistContactDetails</Name>
+          <XPath>cda:telecom</XPath>
+        </Field>
+
+      </FieldMappings>
+    </Document>
+
+    <Document>
+      <TemplateId>1.2.36.1.2001.1001.100.1002.222</TemplateId>
+      <Name>Diagnostic Imaging Report</Name>
+      <FieldMappings>
+
+        <!-- DocumentMetadata -->
+        <Field>
+          <Name>DocumentCode</Name>
+          <XPath>/cda:ClinicalDocument/cda:code</XPath>
+        </Field>
+        <Field>
+          <Name>EffectiveTime</Name>
+          <XPath>/cda:ClinicalDocument/cda:effectiveTime/@value</XPath>
+        </Field>
+        <Field>
+          <Name>Title</Name>
+          <XPath>/cda:ClinicalDocument/cda:title</XPath>
+        </Field>
+        <Field>
+          <Name>DocumentId</Name>
+          <XPath>/cda:ClinicalDocument/cda:id</XPath>
+        </Field>
+
+        <!-- AuthorOrg -->
+        <Field>
+          <Name>AuthorPersonName</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>AuthorTelecoms</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:telecom</XPath>
+        </Field>
+        <Field>
+          <Name>AuthorIhi</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:assignedPerson/ext:asEntityIdentifier/ext:id[@assigningAuthorityName='IHI']/@root</XPath>
+        </Field>
+        <Field>
+          <Name>AuthorOrganisationName</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:assignedPerson/ext:asEmployment/ext:employerOrganization/cda:asOrganizationPartOf/cda:wholeOrganization/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>AuthorOrganisationHpio</Name>
+          <XPath>/cda:ClinicalDocument/cda:author/cda:assignedAuthor/cda:assignedPerson/ext:asEmployment/ext:employerOrganization/cda:asOrganizationPartOf/cda:wholeOrganization/ext:asEntityIdentifier/ext:id/@root</XPath>
+        </Field>
+
+        <!-- SubjectOfCare -->
+        <Field>
+          <Name>SubjectOfCare</Name>
+          <XPath>/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient</XPath>
+        </Field>
+        <Field>
+          <Name>SubjectOfCareIhi</Name>
+          <XPath>ext:asEntityIdentifier/ext:id[@assigningAuthorityName='IHI']</XPath>
+        </Field>
+        <Field>
+          <Name>SubjectOfCareAdministrativeGenderCode</Name>
+          <XPath>cda:administrativeGenderCode</XPath>
+        </Field>
+        <Field>
+          <Name>SubjectOfCareBirthTime</Name>
+          <XPath>cda:birthTime/@value</XPath>
+        </Field>
+        <Field>
+          <Name>SubjectOfCarePersonName</Name>
+          <XPath>/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name</XPath>
+        </Field>
+        <Field>
+          <Name>DvaNumber</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='102.16080']/ext:coverage2/ext:entitlement[ext:participant/@typeCode = 'BEN']/ext:id[@assigningAuthorityName="Department of Veterans&apos; Affairs"]/@extension</XPath>
+        </Field>
+        <Field>
+          <Name>MedicareNumberEntitlements</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='102.16080']/ext:coverage2/ext:entitlement[ext:participant/@typeCode = 'BEN']/ext:id[@assigningAuthorityName='Medicare Card Number']/@extension</XPath>
+        </Field>
+        <Field>
+          <Name>MedicareNumberEntityIdentifier</Name>
+          <XPath>/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/ext:asEntityIdentifier/ext:id[@assigningAuthorityName='Individual Medicare Card Number']/@extension</XPath>
+        </Field>
+
+
+        <!-- Diagnostic Imaging - Imaging Examination Result 1..* -->
+        <Field>
+          <Name>DITestResults</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='101.16945']/cda:component</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIExamResultName</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:code</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIModality</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:methodCode</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIAnatomicalSite</Name>
+          <XPath>cda:section[cda:code/@code='102.16145']/cda:entry/cda:observation/cda:targetSiteCode</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIAnatomicalSiteSide</Name>
+          <XPath>cda:qualifier/cda:value</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIAnatomicalRegion</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:entryRelationship/cda:observation[cda:code/@code='103.17009']/cda:value</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIOverallResultStatus</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:entryRelationship/cda:observation[cda:code/@code='308552006']/cda:value</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIImageDateTime</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:entryRelationship/cda:observation[cda:code/@code='103.16589']/cda:effectiveTime/@value</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIExaminationProcedure</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:entryRelationship/cda:act[cda:code/@code='105.16633']/cda:text</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIObservationDateTime</Name>
+          <XPath>cda:section/cda:entry/cda:observation/cda:entryRelationship/cda:act[cda:code/@code='102.16511']/cda:entryRelationship/cda:observation[cda:code/@code='102.16515']/cda:effectiveTime/@value</XPath>
+        </Field>
+
+        <!-- Diagnostic Imaging - Related Document-->
+        <Field>
+          <Name>DIDocument</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='101.16945']/cda:entry</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIReportDateTime</Name>
+          <XPath>cda:act/cda:effectiveTime/cda:low/@value</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIReportDescription</Name>
+          <XPath>cda:act/cda:entryRelationship/cda:act[cda:code/@code='103.16966']/cda:text</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIReportStatus</Name>
+          <XPath>cda:act/cda:entryRelationship/cda:observation[cda:code/@code='103.20104']/cda:value</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIReportIntegrityCheck</Name>
+          <XPath>cda:act/cda:reference/cda:externalDocument[cda:code/@code='18748-4']/cda:text/@integrityCheck</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIReportMediaType</Name>
+          <XPath>cda:act/cda:reference/cda:externalDocument[cda:code/@code='18748-4']/cda:text/@mediaType</XPath>
+        </Field>
+
+        <Field>
+          <Name>DIReportDocName</Name>
+          <XPath>cda:act/cda:reference/cda:externalDocument[cda:code/@code='18748-4']/cda:text/cda:reference/@value</XPath>
+        </Field>
+
+        <Field>
+          <Name>AccessionNumber</Name>
+          <XPath>/cda:ClinicalDocument/cda:inFulfillmentOf/cda:order/cda:id</XPath>
+        </Field>
+
+
+        <!-- Diagnostic Imaging - Radiologist-->
+        <Field>
+          <Name>Radiologist</Name>
+          <XPath>/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[cda:code/@code='101.16945']/cda:author/cda:assignedAuthor</XPath>
+        </Field>
+
+        <Field>
+          <Name>RadiologistName</Name>
+          <XPath>cda:assignedPerson/cda:name</XPath>
+        </Field>
+
+        <Field>
+          <Name>RadiologistIdentifier</Name>
+          <XPath>cda:assignedPerson/ext:asEntityIdentifier/ext:id[@assigningAuthorityName="HPI-I"]/@root</XPath>
+        </Field>
+
+        <Field>
+          <Name>RadiologistOrganisationName</Name>
+          <XPath>cda:assignedPerson/ext:asEmployment/ext:employerOrganization/cda:asOrganizationPartOf/cda:wholeOrganization/cda:name</XPath>
+        </Field>
+
+        <Field>
+          <Name>RadiologistOrganisationIdentifier</Name>
+          <XPath>cda:assignedPerson/ext:asEmployment/ext:employerOrganization/cda:asOrganizationPartOf/cda:wholeOrganization/ext:asEntityIdentifier/ext:id[@assigningAuthorityName="HPI-O"]/@root</XPath>
+        </Field>
+
+        <Field>
+          <Name>RadiologistContactDetails</Name>
+          <XPath>cda:telecom</XPath>
+        </Field>
+
+      </FieldMappings>
+    </Document>
+
   </Documents>
 </ConfigModel>
+<!-- ALSO COPY THIS CONTENT INTO PCEHRSimulator file: cdaExtractorConfig.xml -->

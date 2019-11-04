@@ -69,7 +69,13 @@ namespace Nehta.VendorLibrary.CdaExtractor
 
             var pbsExtractor = new PharmaceuticalBenefitItemExtractor(documentXPaths);
             var pbs = pbsExtractor.Extract(cdaXmlDocument);
-  
+
+            var diagnosticImagingExtractor = new DiagnosticImagingExtractor(documentXPaths);
+            var diagnosticImaging = diagnosticImagingExtractor.Extract(cdaXmlDocument);
+
+            var pathologyExtractor = new PathologyExtractor(documentXPaths);
+            var pathology = pathologyExtractor.Extract(cdaXmlDocument);
+
             var document = new CdaDocument
             {
                 Author = author,
@@ -81,7 +87,9 @@ namespace Nehta.VendorLibrary.CdaExtractor
                 ImmunisationItems = immunisations,
                 ConsumerNote = consumerNote,
                 AdvanceCareInformation = advanceCareInformation,
-                PharmaceuticalBenefitItems = pbs
+                PharmaceuticalBenefitItems = pbs,
+                Pathology = pathology,
+                DiagnosticImaging = diagnosticImaging
             };
 
             return document;

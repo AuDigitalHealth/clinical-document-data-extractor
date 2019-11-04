@@ -1,8 +1,14 @@
 ### Change Log/Revision History
 
-1.8.0
+1.9.0
+-------------
+Added "Pathology Report" Data
+Added "Diagnostic Imaging Report" Data
+
+1.8.3
 -------------
 Add cease medication support
+Incremented version due to nuget deployment
 
 1.7.0
 -------------

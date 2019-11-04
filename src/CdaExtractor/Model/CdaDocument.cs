@@ -14,5 +14,7 @@ namespace Nehta.VendorLibrary.CdaExtractor.Model
         public List<Immunisation> ImmunisationItems { get; set; }
         public ConsumerNote ConsumerNote { get; set; }
         public AdvanceCareInformation AdvanceCareInformation { get; set; }
+        public Pathology Pathology { get; set; }
+        public DiagnosticImaging DiagnosticImaging { get; set; }
     }
 }

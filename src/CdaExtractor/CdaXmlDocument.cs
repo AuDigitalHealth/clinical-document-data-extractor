@@ -208,6 +208,20 @@ namespace Nehta.VendorLibrary.CdaExtractor
             };
         }
 
+        public Id GetId(XmlNode node, string xpath)
+        {
+            var textNode = node.SelectSingleNode(xpath, _xmlNamespaceManager) as XmlElement;
+
+            if (textNode == null) return null;
+            if (textNode.HasAttribute("nullFlavor")) return null;
+
+            return new Id
+            {
+                Root = GetString(textNode.Attributes["root"]),
+                Extension = GetString(textNode.Attributes["extension"])
+            };
+        }
+
         #region DateTime / Interval Functions
 
         public DateTime? GetDateTimeValue(string xpath)
