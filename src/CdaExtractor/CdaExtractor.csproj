@@ -50,11 +50,13 @@
     <Compile Include="Extractor\AdvanceCareInformationExtractor.cs" />
     <Compile Include="Extractor\AuthorExtractor.cs" />
     <Compile Include="Extractor\ConsumerNoteExtractor.cs" />
+    <Compile Include="Extractor\ImmunisationRegisterExtractor.cs" />
     <Compile Include="Extractor\ImmunisationsExtractor.cs" />
     <Compile Include="Extractor\DocumentMetadataExtractor.cs" />
     <Compile Include="Extractor\ICdaExtractor.cs" />
     <Compile Include="Extractor\MedicalHistoryExtractor.cs" />
     <Compile Include="Extractor\DiagnosticImagingExtractor.cs" />
+    <Compile Include="Extractor\PsmlExtractor.cs" />
     <Compile Include="Extractor\PharmaceuticalBenefitItemExtractor.cs" />
     <Compile Include="Extractor\PathologyExtractor.cs" />
     <Compile Include="Extractor\SubjectOfCareExtractor.cs" />
@@ -64,6 +66,8 @@
     <Compile Include="IDocumentXPathProvider.cs" />
     <Compile Include="Model\DiagnosticImaging.cs" />
     <Compile Include="Model\ImagingExaminationResult.cs" />
+    <Compile Include="Model\ImmunisationRegister.cs" />
+    <Compile Include="Model\Psml.cs" />
     <Compile Include="Model\PathologyTestResult.cs" />
     <Compile Include="Model\Pathology.cs" />
     <Compile Include="Model\AdverseReaction.cs" />

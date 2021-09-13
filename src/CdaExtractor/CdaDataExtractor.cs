@@ -61,6 +61,10 @@ namespace Nehta.VendorLibrary.CdaExtractor
             var immunisationsEx = new ImmunisationsExtractor(documentXPaths);
             var immunisations = immunisationsEx.Extract(cdaXmlDocument);
 
+            var immunisationRegisterEx = new ImmunisationRegisterExtractor(documentXPaths);
+            var immunisationRegister = immunisationRegisterEx.Extract(cdaXmlDocument);
+
+
             var consumerNoteEx = new ConsumerNoteExtractor(documentXPaths);
             var consumerNote = consumerNoteEx.Extract(cdaXmlDocument);
 
@@ -76,6 +80,9 @@ namespace Nehta.VendorLibrary.CdaExtractor
             var pathologyExtractor = new PathologyExtractor(documentXPaths);
             var pathology = pathologyExtractor.Extract(cdaXmlDocument);
 
+            var psmlExtractor = new PsmlExtractor(documentXPaths);
+            var psml = psmlExtractor.Extract(cdaXmlDocument);
+
             var document = new CdaDocument
             {
                 Author = author,
@@ -85,11 +92,13 @@ namespace Nehta.VendorLibrary.CdaExtractor
                 DocumentMetadata = documentMetadata,
                 SubjectOfCare = subjectOfCare,
                 ImmunisationItems = immunisations,
+                ImmunisationRegisterItems = immunisationRegister,
                 ConsumerNote = consumerNote,
                 AdvanceCareInformation = advanceCareInformation,
                 PharmaceuticalBenefitItems = pbs,
                 Pathology = pathology,
-                DiagnosticImaging = diagnosticImaging
+                DiagnosticImaging = diagnosticImaging,
+                Psml = psml
             };
 
             return document;

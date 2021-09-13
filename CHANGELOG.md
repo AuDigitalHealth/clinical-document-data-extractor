@@ -1,5 +1,14 @@
 ### Change Log/Revision History
 
+NOTE:  WHEN UPDATING THIS LIBRARY
+If you update the config.xml file, this file needs to be copied to the MedsView mapper project
+AND the mhrSimulator (cdaExtractorConfig.xml)
+
+1.10.0
+-------------
+Added "Australian Immunisation Register" Data
+Added "Pharmacist Shared Medicines List" Data
+
 1.9.0
 -------------
 Added "Pathology Report" Data

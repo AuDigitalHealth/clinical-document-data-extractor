@@ -224,6 +224,11 @@ namespace Nehta.VendorLibrary.CdaExtractor
 
         #region DateTime / Interval Functions
 
+        public DateTime? GetDateTime(string value)
+        {
+            return string.IsNullOrWhiteSpace(value) ? null : DateTimeHelper.ConvertISO8601DateTimeStringToDateTime(value);
+        }
+
         public DateTime? GetDateTimeValue(string xpath)
         {
             return string.IsNullOrWhiteSpace(xpath) ? null : DateTimeHelper.ConvertISO8601DateTimeStringToDateTime(GetString(xpath));
@@ -377,6 +382,10 @@ namespace Nehta.VendorLibrary.CdaExtractor
         }
 
         #endregion
+
+
+
+
     }
 
     public static class Extensions

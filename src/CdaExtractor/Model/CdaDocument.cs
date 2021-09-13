@@ -12,9 +12,13 @@ namespace Nehta.VendorLibrary.CdaExtractor.Model
         public List<PharmaceuticalBenefitItem> PharmaceuticalBenefitItems { get; set; }
         public List<MedicalHistory> MedicalHistoryItems { get; set; }
         public List<Immunisation> ImmunisationItems { get; set; }
+        public List<ImmunisationRegister> ImmunisationRegisterItems { get; set; }
         public ConsumerNote ConsumerNote { get; set; }
         public AdvanceCareInformation AdvanceCareInformation { get; set; }
         public Pathology Pathology { get; set; }
         public DiagnosticImaging DiagnosticImaging { get; set; }
+        public Psml Psml { get; set; }
+
+
     }
 }
