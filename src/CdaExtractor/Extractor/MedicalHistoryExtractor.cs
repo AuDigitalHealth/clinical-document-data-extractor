@@ -31,9 +31,38 @@ namespace Nehta.VendorLibrary.CdaExtractor.Extractor
             if (otherMedicalHistoryItem != null && otherMedicalHistoryItem.Any())
                 medicalHistoryItems.AddRange(otherMedicalHistoryItem.ToArray());
 
+            var responseMedicalHistoryItem = LoadResponseMedicalHistoryItems(cdaDocument);
+            if (responseMedicalHistoryItem != null && responseMedicalHistoryItem.Any())
+                medicalHistoryItems.AddRange(responseMedicalHistoryItem.ToArray());
+
+
             return medicalHistoryItems.Any() ? medicalHistoryItems : null;
         }
 
+        private IList<MedicalHistory> LoadResponseMedicalHistoryItems(CdaXmlDocument cdaDocument)
+        {
+            IList<MedicalHistory> responseMedicalHistoryList = new List<MedicalHistory>();
+
+            var responseMedicalHistoryItemNodes = cdaDocument.SelectNodes(_documentXPaths.Get("ResponseMedicalHistoryItem"));
+
+            if (responseMedicalHistoryItemNodes != null)
+            {
+                foreach (XmlElement historyItemNode in responseMedicalHistoryItemNodes)
+                {
+                    var responseMedicalHistoryItem = new MedicalHistory
+                    {
+                        MedicalHistoryItemType = MedicalHistoryType.ResponseNarrative
+                    };
+
+                    // Medical History Item Comment
+                    responseMedicalHistoryItem.Comment = cdaDocument.GetString(historyItemNode, _documentXPaths.Get("ResponseMedicalHistoryText"));
+
+                    responseMedicalHistoryList.Add(responseMedicalHistoryItem);
+                }
+            }
+
+            return responseMedicalHistoryList.Any() ? responseMedicalHistoryList : null;
+        }
         private IList<MedicalHistory> LoadOtherMedicalHistoryItems(CdaXmlDocument cdaDocument)
         {
             IList<MedicalHistory> otherMedicalHistoryList = new List<MedicalHistory>();
@@ -41,27 +70,29 @@ namespace Nehta.VendorLibrary.CdaExtractor.Extractor
             var otherMedicalHistoryItemNodes = cdaDocument.SelectNodes(_documentXPaths.Get("OtherMedicalHistoryItem"));
 
             if (otherMedicalHistoryItemNodes != null)
-            foreach (XmlElement historyItemNode in otherMedicalHistoryItemNodes)
             {
-                var otherMedicalHistoryItem = new MedicalHistory
+                foreach (XmlElement historyItemNode in otherMedicalHistoryItemNodes)
                 {
-                    MedicalHistoryItemType = MedicalHistoryType.OtherMedicalHistoryItem
-                };
+                    var otherMedicalHistoryItem = new MedicalHistory
+                    {
+                        MedicalHistoryItemType = MedicalHistoryType.OtherMedicalHistoryItem
+                    };
 
-                // Medical History Item Description
-                var description = cdaDocument.GetString(historyItemNode, _documentXPaths.Get("OtherMedicalHistoryItemDescription"));
-                if (!string.IsNullOrWhiteSpace(description))
-                {
-                    otherMedicalHistoryItem.MedicalHistoryItem = new CodableText { OriginalText = description };
+                    // Medical History Item Description
+                    var description = cdaDocument.GetString(historyItemNode, _documentXPaths.Get("OtherMedicalHistoryItemDescription"));
+                    if (!string.IsNullOrWhiteSpace(description))
+                    {
+                        otherMedicalHistoryItem.MedicalHistoryItem = new CodableText { OriginalText = description };
+                    }
+
+                    // Medical History Item Time Interval
+                    otherMedicalHistoryItem.Interval = cdaDocument.GetInterval(historyItemNode, _documentXPaths.Get("OtherMedicalHistoryItemTimeInterval"));
+
+                    // Medical History Item Comment
+                    otherMedicalHistoryItem.Comment = cdaDocument.GetString(historyItemNode, _documentXPaths.Get("OtherMedicalHistoryItemComment"));
+
+                    otherMedicalHistoryList.Add(otherMedicalHistoryItem);
                 }
-
-                // Medical History Item Time Interval
-                otherMedicalHistoryItem.Interval = cdaDocument.GetInterval(historyItemNode, _documentXPaths.Get("OtherMedicalHistoryItemTimeInterval"));
-
-                // Medical History Item Comment
-                otherMedicalHistoryItem.Comment = cdaDocument.GetString(historyItemNode, _documentXPaths.Get("OtherMedicalHistoryItemComment"));
-
-                otherMedicalHistoryList.Add(otherMedicalHistoryItem);
             }
 
             return otherMedicalHistoryList.Any() ? otherMedicalHistoryList : null;
@@ -75,31 +106,33 @@ namespace Nehta.VendorLibrary.CdaExtractor.Extractor
             var proceduresNodes = cdaDocument.SelectNodes(_documentXPaths.Get("Procedures"));
 
             if (proceduresNodes != null)
-            foreach (XmlElement procedureNode in proceduresNodes)
             {
-                var proceduresItem = new MedicalHistory
+                foreach (XmlElement procedureNode in proceduresNodes)
                 {
-                    MedicalHistoryItemType = MedicalHistoryType.Procedure
-                };
-
-                // Procedure name    
-                proceduresItem.MedicalHistoryItem = cdaDocument.GetRelativeCode(procedureNode, _documentXPaths.Get("ProcedureName"));
-
-                // Procedure Comment
-                proceduresItem.Comment = cdaDocument.GetString(procedureNode, _documentXPaths.Get("ProcedureComment"));
-
-                // Date/time started
-                var startedDateTime = cdaDocument.GetDateTimeValue(procedureNode, _documentXPaths.Get("ProcedureStartDateTime"));
-
-                if (startedDateTime.HasValue)
-                {
-                    proceduresItem.Interval = new Interval
+                    var proceduresItem = new MedicalHistory
                     {
-                        Start = startedDateTime
+                        MedicalHistoryItemType = MedicalHistoryType.Procedure
                     };
-                }
 
-                proceduresList.Add(proceduresItem);
+                    // Procedure name    
+                    proceduresItem.MedicalHistoryItem = cdaDocument.GetRelativeCode(procedureNode, _documentXPaths.Get("ProcedureName"));
+
+                    // Procedure Comment
+                    proceduresItem.Comment = cdaDocument.GetString(procedureNode, _documentXPaths.Get("ProcedureComment"));
+
+                    // Date/time started
+                    var startedDateTime = cdaDocument.GetDateTimeValue(procedureNode, _documentXPaths.Get("ProcedureStartDateTime"));
+
+                    if (startedDateTime.HasValue)
+                    {
+                        proceduresItem.Interval = new Interval
+                        {
+                            Start = startedDateTime
+                        };
+                    }
+
+                    proceduresList.Add(proceduresItem);
+                }
             }
 
             return proceduresList.Any() ? proceduresList : null;
@@ -112,57 +145,59 @@ namespace Nehta.VendorLibrary.CdaExtractor.Extractor
             var problemDiagnosisNodes = cdaDocument.SelectNodes(_documentXPaths.Get("ProblemDiagnosis"));
 
             if (problemDiagnosisNodes != null)
-            foreach (XmlElement problemNode in problemDiagnosisNodes)
             {
-                var proceduresItem = new MedicalHistory
+                foreach (XmlElement problemNode in problemDiagnosisNodes)
                 {
-                    MedicalHistoryItemType = MedicalHistoryType.ProblemDiagnosis
-                };
-
-                // Problem Diagnosis Identification
-                proceduresItem.MedicalHistoryItem = cdaDocument.GetRelativeCode(problemNode, _documentXPaths.Get("ProblemDiagnosisIdentification"));
-
-                // Problem Diagnosis Comment
-                proceduresItem.Comment = cdaDocument.GetString(problemNode, _documentXPaths.Get("ProblemDiagnosisComment"));
-
-                // Medical History Type
-                proceduresItem.ProblemDiagnosisType = cdaDocument.GetRelativeCode(problemNode, _documentXPaths.Get("ProblemDiagnosisType"));
-
-                // Problem Diagnosis Date Of Onset
-                var onsetDateTime = cdaDocument.GetDateTimeValue(problemNode, _documentXPaths.Get("ProblemDiagnosisDateOfOnset"));
-
-                // Note: Date Of Resolution Remission has been mapped to a Date in the SCS even though it is an Interval.
-                //       There therefore is a need to check the LOW, HIGH and VALUE in that order and return the interval high value for the MedicalHistory Interval.
-
-                DateTime? dateOfResolution = null;
-                // Get Date Of Resolution Interval
-                var dateOfResolutionInterval = cdaDocument.GetInterval(problemNode, _documentXPaths.Get("ProblemDiagnosisDateOfResolutionRemission"));
-
-                if (dateOfResolutionInterval != null)
-                {
-                    if (dateOfResolutionInterval.Start.HasValue)
-                        dateOfResolution = dateOfResolutionInterval.Start;
-
-                    if (dateOfResolutionInterval.End.HasValue)
-                        dateOfResolution = dateOfResolutionInterval.End;
-                }
-
-                if (!dateOfResolution.HasValue)
-                {
-                    // Get Date Of Resolution Attribute Value
-                    dateOfResolution = cdaDocument.GetDateTimeValue(problemNode, string.Format("{0}{1}", _documentXPaths.Get("ProblemDiagnosisDateOfResolutionRemission"), "/@value"));
-                }
-
-                if (onsetDateTime.HasValue || dateOfResolution.HasValue)
-                {
-                    proceduresItem.Interval = new Interval
+                    var proceduresItem = new MedicalHistory
                     {
-                        Start = onsetDateTime.HasValue ? onsetDateTime : null,
-                        End = dateOfResolution.HasValue ? dateOfResolution : null
+                        MedicalHistoryItemType = MedicalHistoryType.ProblemDiagnosis
                     };
-                }
 
-                problemDiagnosiList.Add(proceduresItem);
+                    // Problem Diagnosis Identification
+                    proceduresItem.MedicalHistoryItem = cdaDocument.GetRelativeCode(problemNode, _documentXPaths.Get("ProblemDiagnosisIdentification"));
+
+                    // Problem Diagnosis Comment
+                    proceduresItem.Comment = cdaDocument.GetString(problemNode, _documentXPaths.Get("ProblemDiagnosisComment"));
+
+                    // Medical History Type
+                    proceduresItem.ProblemDiagnosisType = cdaDocument.GetRelativeCode(problemNode, _documentXPaths.Get("ProblemDiagnosisType"));
+
+                    // Problem Diagnosis Date Of Onset
+                    var onsetDateTime = cdaDocument.GetDateTimeValue(problemNode, _documentXPaths.Get("ProblemDiagnosisDateOfOnset"));
+
+                    // Note: Date Of Resolution Remission has been mapped to a Date in the SCS even though it is an Interval.
+                    //       There therefore is a need to check the LOW, HIGH and VALUE in that order and return the interval high value for the MedicalHistory Interval.
+
+                    DateTime? dateOfResolution = null;
+                    // Get Date Of Resolution Interval
+                    var dateOfResolutionInterval = cdaDocument.GetInterval(problemNode, _documentXPaths.Get("ProblemDiagnosisDateOfResolutionRemission"));
+
+                    if (dateOfResolutionInterval != null)
+                    {
+                        if (dateOfResolutionInterval.Start.HasValue)
+                            dateOfResolution = dateOfResolutionInterval.Start;
+
+                        if (dateOfResolutionInterval.End.HasValue)
+                            dateOfResolution = dateOfResolutionInterval.End;
+                    }
+
+                    if (!dateOfResolution.HasValue)
+                    {
+                        // Get Date Of Resolution Attribute Value
+                        dateOfResolution = cdaDocument.GetDateTimeValue(problemNode, string.Format("{0}{1}", _documentXPaths.Get("ProblemDiagnosisDateOfResolutionRemission"), "/@value"));
+                    }
+
+                    if (onsetDateTime.HasValue || dateOfResolution.HasValue)
+                    {
+                        proceduresItem.Interval = new Interval
+                        {
+                            Start = onsetDateTime.HasValue ? onsetDateTime : null,
+                            End = dateOfResolution.HasValue ? dateOfResolution : null
+                        };
+                    }
+
+                    problemDiagnosiList.Add(proceduresItem);
+                }
             }
 
             return problemDiagnosiList.Any() ? problemDiagnosiList : null;

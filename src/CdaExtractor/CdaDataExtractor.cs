@@ -49,6 +49,12 @@ namespace Nehta.VendorLibrary.CdaExtractor
             var adverseReactionsEx = new AdverseReactionsExtractor(documentXPaths);
             var adverseReactions = adverseReactionsEx.Extract(cdaXmlDocument);
 
+            var alertsEx = new AlertsExtractor(documentXPaths);
+            var alerts = alertsEx.Extract(cdaXmlDocument);
+
+            var interventionsEx = new InterventionExtractor(documentXPaths);
+            var interventions = interventionsEx.Extract(cdaXmlDocument);
+
             var documentMetadataExtractor = new DocumentMetadataExtractor(documentXPaths);
             var documentMetadata = documentMetadataExtractor.Extract(cdaXmlDocument);
 
@@ -63,7 +69,6 @@ namespace Nehta.VendorLibrary.CdaExtractor
 
             var immunisationRegisterEx = new ImmunisationRegisterExtractor(documentXPaths);
             var immunisationRegister = immunisationRegisterEx.Extract(cdaXmlDocument);
-
 
             var consumerNoteEx = new ConsumerNoteExtractor(documentXPaths);
             var consumerNote = consumerNoteEx.Extract(cdaXmlDocument);
@@ -83,11 +88,17 @@ namespace Nehta.VendorLibrary.CdaExtractor
             var psmlExtractor = new PsmlExtractor(documentXPaths);
             var psml = psmlExtractor.Extract(cdaXmlDocument);
 
+            var clinicalSynopsisExtractor= new ClinicalSynopsisExtractor(documentXPaths);
+            var clinicalSynopsis = clinicalSynopsisExtractor.Extract(cdaXmlDocument);
+            
+
             var document = new CdaDocument
             {
                 Author = author,
                 Medications = medications,
                 AdverseReactions = adverseReactions,
+                Alerts = alerts,
+                Interventions = interventions,
                 MedicalHistoryItems = medicalHistoryData,
                 DocumentMetadata = documentMetadata,
                 SubjectOfCare = subjectOfCare,
@@ -98,7 +109,8 @@ namespace Nehta.VendorLibrary.CdaExtractor
                 PharmaceuticalBenefitItems = pbs,
                 Pathology = pathology,
                 DiagnosticImaging = diagnosticImaging,
-                Psml = psml
+                Psml = psml,
+                ClinicalSynopsis = clinicalSynopsis
             };
 
             return document;

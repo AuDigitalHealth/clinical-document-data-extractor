@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nehta.VendorLibrary.CdaExtractor</RootNamespace>
     <AssemblyName>Nehta.VendorLibrary.CdaExtractor</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,6 +49,8 @@
     <Compile Include="Configuration\ConfigModel.cs" />
     <Compile Include="Configuration\Document.cs" />
     <Compile Include="Configuration\Field.cs" />
+    <Compile Include="Extractor\InterventionExtractor.cs" />
+    <Compile Include="Extractor\AlertsExtractor.cs" />
     <Compile Include="Extractor\AdverseReactionsExtractor.cs" />
     <Compile Include="Extractor\AdvanceCareInformationExtractor.cs" />
     <Compile Include="Extractor\AuthorExtractor.cs" />
@@ -56,6 +61,7 @@
     <Compile Include="Extractor\ICdaExtractor.cs" />
     <Compile Include="Extractor\MedicalHistoryExtractor.cs" />
     <Compile Include="Extractor\DiagnosticImagingExtractor.cs" />
+    <Compile Include="Extractor\ClinicalSynopsisExtractor.cs" />
     <Compile Include="Extractor\PsmlExtractor.cs" />
     <Compile Include="Extractor\PharmaceuticalBenefitItemExtractor.cs" />
     <Compile Include="Extractor\PathologyExtractor.cs" />
@@ -64,6 +70,9 @@
     <Compile Include="Helper\DateTimeHelper.cs" />
     <Compile Include="ICdaDataExtractor.cs" />
     <Compile Include="IDocumentXPathProvider.cs" />
+    <Compile Include="Model\Intervention.cs" />
+    <Compile Include="Model\Alert.cs" />
+    <Compile Include="Model\ClinicalSynopsis.cs" />
     <Compile Include="Model\DiagnosticImaging.cs" />
     <Compile Include="Model\ImagingExaminationResult.cs" />
     <Compile Include="Model\ImmunisationRegister.cs" />

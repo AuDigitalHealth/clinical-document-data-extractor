@@ -25,8 +25,9 @@ namespace Nehta.VendorLibrary.CdaExtractor.Extractor
                  {
                         DateTime = document.GetDateTimeValue(node, _documentXPaths.Get("ImmunisationDateTime")),
                         Immunisation = document.GetRelativeCode(node, _documentXPaths.Get("Immunisation")),
-                        BrandName = document.GetRelativeCode(node, _documentXPaths.Get("BrandName"))
-                    }
+                        BrandName = document.GetRelativeCode(node, _documentXPaths.Get("BrandName")),
+                        SequenceNumber = document.GetString(node, _documentXPaths.Get("VaccineSequenceNumber"))
+                 }
                 ).ToList();
         }
     }

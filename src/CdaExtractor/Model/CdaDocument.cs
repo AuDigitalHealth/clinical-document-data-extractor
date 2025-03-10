@@ -8,6 +8,8 @@ namespace Nehta.VendorLibrary.CdaExtractor.Model
         public Author Author { get; set; }
         public SubjectOfCare SubjectOfCare { get; set; }
         public List<AdverseReaction> AdverseReactions { get; set; }
+        public List<Alert> Alerts { get; set; }
+        public List<Intervention> Interventions { get; set; }
         public List<Medication> Medications { get; set; }
         public List<PharmaceuticalBenefitItem> PharmaceuticalBenefitItems { get; set; }
         public List<MedicalHistory> MedicalHistoryItems { get; set; }
@@ -18,7 +20,7 @@ namespace Nehta.VendorLibrary.CdaExtractor.Model
         public Pathology Pathology { get; set; }
         public DiagnosticImaging DiagnosticImaging { get; set; }
         public Psml Psml { get; set; }
-
+        public ClinicalSynopsis ClinicalSynopsis { get; set; }
 
     }
 }

@@ -35,7 +35,7 @@ namespace CdaExtractor.Sample
         }
 
         /// <summary>
-        /// Load a single CDA Document and extract the data and serialize to a XML file
+        /// Load a single CDA Document and extract the data and serialize to an XML file
         /// </summary>
         public static void LoadSingleCdaDocument()
         {

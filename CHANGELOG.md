@@ -4,6 +4,19 @@ NOTE:  WHEN UPDATING THIS LIBRARY
 If you update the config.xml file, this file needs to be copied to the MedsView mapper project
 AND the mhrSimulator (cdaExtractorConfig.xml)
 
+1.15.0
+-------------
+XPath for Subject of Care -> MedicareNumberEntityIdentifier field for
+Maximum Discharge Summary (1.2.36.1.2001.1001.101.100.1002.4) updated in config.xml.
+
+1.14.0
+-------------
+Added Support for Inventions, Clinical Synopsis and Alerts
+
+1.12.0
+-------------
+Added "Australian Immunisation Register" Sequence
+
 1.10.0
 -------------
 Added "Australian Immunisation Register" Data

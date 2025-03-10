@@ -7,5 +7,6 @@ namespace Nehta.VendorLibrary.CdaExtractor.Model
         public DateTime? DateTime { get; set; }
         public CodableText Immunisation { get; set; }
         public CodableText BrandName { get; set; }
+        public string SequenceNumber { get; set; }
     }
 }
