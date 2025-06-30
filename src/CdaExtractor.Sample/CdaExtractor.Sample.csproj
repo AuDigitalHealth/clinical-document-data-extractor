@@ -50,13 +50,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CdaExtractor\CdaExtractor.csproj">
-      <Project>{2B52B341-7CF8-47A3-A36C-F0BABC70DB9E}</Project>
-      <Name>CdaExtractor</Name>
-    </ProjectReference>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <ProjectReference Include="..\CdaExtractor\CdaExtractor.csproj">
+      <Project>{9ae59d06-c180-1711-180e-cd9014e527f6}</Project>
+      <Name>CdaExtractor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

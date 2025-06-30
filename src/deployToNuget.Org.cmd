@@ -1,8 +1,10 @@
 del *.nupkg
 
-msbuild CdaExtractor.sln /p:Configuration=Release
+dotnet build /p:Configuration=Release
 
-NuGet.exe pack CdaExtractor/CdaExtractor.csproj -Properties Configuration=Release
+REM Use dotnet for packaging now
+REM NuGet.exe pack CdaExtractor/CdaExtractor.csproj -Properties Configuration=Release
+dotnet pack .\CdaExtractor\CdaExtractor.csproj -c Release -o .
 
 pause
 

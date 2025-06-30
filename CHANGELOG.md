@@ -4,6 +4,10 @@ NOTE:  WHEN UPDATING THIS LIBRARY
 If you update the config.xml file, this file needs to be copied to the MedsView mapper project
 AND the mhrSimulator (cdaExtractorConfig.xml)
 
+1.16.0
+-------------
+Added support for net standard 2.0 (for Core)
+
 1.15.0
 -------------
 XPath for Subject of Care -> MedicareNumberEntityIdentifier field for
